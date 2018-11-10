@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Psycic Guessing Game</title>
+    <link rel="stylesheet" type="text/css" hreff="assets/css/style.css">
+</head>
+
+<body>
+
+    <!-- Gererate a random key
+I need the user to choose a key 
+Capture those choices
+Compare the choices- determine win or loss
+Display win or loss to user -->
+
+    <script type="text/javascript">
+        var wins = 0;
+        var losses = 0;
+        var attempts = 10;
+        var letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+
+        var computerLetter = letters[Math.floor(Math.random() * letters.length)];
+        console.log(computerLetter);
+
+        function reset() {
+            attempts = 10;
+            computerLetter = letters[Math.floor(Math.random() * letters.length)];
+            console.log(computerLetter);
+        }
+
+        document.onkeyup = function (playerguess) {
+            var playerGuess = event.key;
+            console.log(playerGuess);
+
+            if (playerGuess === computerLetter) {
+                wins++;
+                console.log("Wins: ", wins);
+                alert("You won!");
+                reset();
+            }
+            if (playerGuess !== computerLetter) {
+                attempts--;
+                console.log("Attempts: ", attempts);
+            }
+            if (attempts == 0) {
+                losses++;
+                console.log("Losses: ", losses);
+                alert("You lost. Try again!");
+                reset();
+
+            }
+            document.getElementById('wins').innerHTML = wins;
+      document.getElementById('losses').innerHTML = losses;
+      document.getElementById('attempts').innerHTML = attempts;
+
+        }
+      
+
+
+        
+
+    </script>
+
+    <div class="container">
+        <div class="row">
+            <h1>Psychic Guessing Game!</h1>
+        </div>
+
+
+        <h3>Won:</h3>
+        <span id="wins">
+
+        </span>
+
+        <h3>Lost:</h3>
+        <span id="losses">
+
+        </span>
+
+        <h3>Guesses Remaining:</h3>
+        <span id="attempts">
+
+        </span>
+
+    </div>
+
+
+</body>
+
+</html>
